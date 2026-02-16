@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Wishlist Cards</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f2f2;
+    margin:0;
+    padding:40px;
+}
+
+/* Container */
+.wishlist-box{
+    background:#cfe3db;
+    padding:25px;
+    border-radius:20px;
+}
+
+.wishlist-title{
+    font-size:28px;
+    font-weight:bold;
+    color:white;
+    margin-bottom:20px;
+}
+
+/* Cards layout */
+.cards{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+/* Card */
+.card{
+    background:white;
+    border-radius:15px;
+    width:220px;
+    padding:15px;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+/* Image */
+.card img{
+    width:100%;
+    height:160px;
+    object-fit:contain;
+}
+
+/* Text */
+.card h4{
+    margin:10px 0 5px;
+    font-size:16px;
+}
+
+.discount{
+    font-weight:bold;
+}
+
+/* Modal */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    width:320px;
+    text-align:center;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:15px;
+    top:10px;
+    font-size:20px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wishlist-box">
+    <div class="wishlist-title">Add to your wishlist</div>
+
+    <div class="cards">
+
+        <div class="card" onclick="showInfo(0)">
+            <img src="https://m.media-amazon.com/images/I/61kWB+uzR2L._SX522_.jpg">
+            <h4>boAt, realme, Mivi & more</h4>
+            <div class="discount">Min 50% Off</div>
+        </div>
+
+        <div class="card" onclick="showInfo(1)">
+            <img src="shoes.jpg">
+            <h4>Men's Sports Shoes</h4>
+            <div class="discount">Min 40% Off</div>
+        </div>
+
+        <div class="card" onclick="showInfo(2)">
+           <img src="bag.webp">
+            <h4>Bags</h4>
+            <div class="discount">Min 65% Off</div>
+        </div>
+
+        <div class="card" onclick="showInfo(3)">
+            <img src="phone.webp">
+            <h4>phones</h4>
+            <div class="discount">Min 40% Off</div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">✖</span>
+        <h2 id="pName"></h2>
+        <p id="pPrice"></p>
+        <p id="pInfo"></p>
+    </div>
+</div>
+
+<script>
+const products = [
+    {
+        name:"Wireless Earbuds",
+        price:"₹1,499",
+        info:"Bluetooth 5.3, 30hrs playback, fast charging."
+    },
+    {
+        name:"Men's Sports Shoes",
+        price:"₹2,199",
+        info:"Breathable mesh, anti-slip sole, running shoes."
+    },
+    {
+        name:"Casual Shoes & Sandals",
+        price:"₹999",
+        info:"Comfort wear combo, lightweight design."
+    },
+    {
+        name:"Nike Sports Shoes",
+        price:"₹3,499",
+        info:"Cushioned sole, ideal for gym & running."
+    }
+];
+
+function showInfo(index){
+    document.getElementById("modal").style.display="flex";
+    document.getElementById("pName").innerText = products[index].name;
+    document.getElementById("pPrice").innerText = "Price: " + products[index].price;
+    document.getElementById("pInfo").innerText = products[index].info;
+}
+
+function closeModal(){
+    document.getElementById("modal").style.display="none";
+}
+
+/* Close on outside click */
+window.onclick = function(e){
+    if(e.target.id === "modal"){
+        closeModal();
+    }
+}
+
+</script>
+
+</body>
+</html>
+
